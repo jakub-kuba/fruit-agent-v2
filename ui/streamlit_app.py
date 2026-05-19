@@ -10,7 +10,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("🍎 Fruit Market AI Agent")
+st.title("🍎🍋 Fruit Market AI Agent 🍇🍊")
 st.caption("Powered by LangGraph & Azure OpenAI")
 
 # --- Session state initialization ---
@@ -71,10 +71,18 @@ if prompt := st.chat_input("Ask about fruits..."):
                 data = response.json()
 
                 ai_response = data["response"]
+                report_csv = data.get("report_csv")
                 intent = data["intent"]
 
                 st.markdown(ai_response)
 
+                if report_csv:
+                    st.download_button(
+                        label="⬇ Download Report (CSV)",
+                        data=report_csv,
+                        file_name="fruit_report.csv",
+                        mime="text/csv"
+                    )
                 # Show intent badge
                 intent_colors = {
                     "knowledge": "🟢 Knowledge",
