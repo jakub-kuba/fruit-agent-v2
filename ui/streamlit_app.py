@@ -1,8 +1,9 @@
 import uuid
 import httpx
 import streamlit as st
+import os
 
-API_URL = "http://localhost:8080"
+API_URL = os.getenv("API_URL", "http://localhost:8080")
 
 st.set_page_config(
     page_title="Fruit Market Agent",
